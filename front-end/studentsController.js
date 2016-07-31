@@ -4,7 +4,7 @@ angular
 
 function StudentsController($scope, StudentsFactory) {
     $scope.students = [];
-    $scope.specificStudent= [];
+    $scope.specificStudent= {};
 
     var getStudents = function() {
         StudentsFactory.getStudents().then(function(response) {
@@ -30,9 +30,12 @@ function StudentsController($scope, StudentsFactory) {
     $scope.getAStudent = function(){
         StudentsFactory.getStudent($scope.student.id).then(function(response) {
             if($scope.specificStudent.length > 0){
-                $scope.specificStudent = [];
+                $scope.specificStudent = {};
             }
-            $scope.specificStudent.push(response.data);
+            $scope.specificStudent ={
+                name : response.data.name,
+                age : response.data.age
+            };
         });
     };
 
