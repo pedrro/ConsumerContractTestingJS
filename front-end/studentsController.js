@@ -12,7 +12,6 @@ function StudentsController($scope, StudentsFactory) {
                 $scope.students = [];
             }
             $scope.students.push(response.data);
-            console.log($scope.students);
         });
     };
 

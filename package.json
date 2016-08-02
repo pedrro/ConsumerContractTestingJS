@@ -9,8 +9,14 @@
   },
   "devDependencies": {
     "angular": "^1.5.8",
+    "angular-mocks": "latest",
     "frisby": "latest",
-    "jasmine-node": "latest"
+    "jasmine-core": "^2.3.4",
+    "jasmine-node": "latest",
+    "karma": "^0.13.22",
+    "karma-jasmine": "^0.3.8",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "phantomjs": "^1.9.18"
   },
   "scripts": {
     "pretest": "node server.js > /dev/null 2>&1 &",
