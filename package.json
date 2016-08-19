@@ -10,16 +10,20 @@
   "devDependencies": {
     "angular": "^1.5.8",
     "angular-mocks": "latest",
+    "chai": "^3.5.0",
     "frisby": "latest",
     "jasmine-core": "^2.3.4",
     "jasmine-node": "latest",
     "karma": "^0.13.22",
     "karma-jasmine": "^0.3.8",
     "karma-phantomjs-launcher": "^0.2.1",
-    "phantomjs": "^1.9.18"
+    "mocha": "^3.0.2",
+    "phantomjs": "^1.9.18",
+    "supertest": "^2.0.0"
   },
   "scripts": {
     "pretest": "node server.js > /dev/null 2>&1 &",
+    "back-unit-test": "mocha --opts test/back/unit/mocha.opts test/back/unit/**_spec.js",
     "test": "node_modules/jasmine-node/bin/jasmine-node test/back/server_spec.js",
     "start": "node back-end/server.js"
   },

@@ -22,7 +22,7 @@ describe('Controller: Students', function() {
         name: 'Thiago',
         age: 9
       }];
-      
+
       spyOn(StudentsFactory, 'getStudents').and.returnValue(students);
     });
   });
