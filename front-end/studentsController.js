@@ -6,7 +6,7 @@ function StudentsController($scope, StudentsFactory) {
     $scope.students = [];
     $scope.specificStudent= {};
 
-    var getStudents = function() {
+    $scope.getStudents = function() {
         StudentsFactory.getStudents().then(function(response) {
             if($scope.students.length > 0){
                 $scope.students = [];
@@ -15,14 +15,11 @@ function StudentsController($scope, StudentsFactory) {
         });
     };
 
-    getStudents();
-
-
     $scope.addStudent = function() {
         var data = { name : $scope.student.name, age: $scope.student.age};
         StudentsFactory.addStudent(data).then(function(response) {
-            $scope.students[0].push(response.data);
-            getStudents();
+            $scope.students.push(response.data);
+            $scope.getStudents();
         });
     };
 
