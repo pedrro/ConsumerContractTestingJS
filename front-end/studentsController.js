@@ -8,10 +8,10 @@ function StudentsController($scope, StudentsFactory) {
 
     $scope.getStudents = function() {
         StudentsFactory.getStudents().then(function(response) {
-            if($scope.students.length > 0){
+            if($scope.students.length > 0) {
                 $scope.students = [];
             }
-            $scope.students.push(response.data);
+            $scope.students = $scope.students.concat(response.data);
         });
     };
 

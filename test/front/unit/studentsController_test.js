@@ -1,18 +1,15 @@
 describe('Controller: Students', function() {
-  var StudentsController, scope, StudentsFactory;
+  var StudentsController, scope, StudentsFactory, mockFactory, $q, studentsArray;
+
   beforeEach(function() {
+
     module('studentsApp');
-    inject(function($rootScope, $controller, $httpBackend, $injector) {
+
+    inject(function($rootScope, $controller, _$q_, $injector) {
+      $q = _$q_;
       scope = $rootScope.$new();
-      httpBackend = $injector.get('$httpBackend');
-      StudentsFactory = $injector.get('StudentsFactory');
 
-      StudentsController = $controller('StudentsController', {
-        $scope : scope,
-        'StudentsFactory' : StudentsFactory
-      });
-
-      students = [{
+      studentsArray = [{
         name: 'Pedro',
         age: 10
       }, {
@@ -23,7 +20,11 @@ describe('Controller: Students', function() {
         age: 9
       }];
 
-      spyOn(StudentsFactory, 'getStudents').and.returnValue(students);
+      StudentsFactory = $injector.get('StudentsFactory');
+
+      StudentsController = $controller('StudentsController', {
+        $scope : scope
+      });
     });
   });
 
@@ -32,12 +33,47 @@ describe('Controller: Students', function() {
   });
 
   it('Should get all students', function() {
-    scope.students = [];
+    spyOn(StudentsFactory, 'getStudents').and.returnValue($q.when({data: studentsArray}));
 
-    StudentsController.getStudents();
-    $scope.$apply();
-    expect(scope.students.length).toBe(3);
+    scope.getStudents();
+    scope.$apply();
+
+    var students1 = scope.students;
+
+    expect(students1.length).toBe(3);
   });
 
+  it('Should add a Student', function() {
+    spyOn(StudentsFactory, 'getStudents').and.returnValue($q.when({data: studentsArray}));
+    spyOn(StudentsFactory, 'addStudent').and.returnValue($q.when({data :{name : "Pedro",
+    age: 10}}));
+    scope.student = {
+      name : "Pedro",
+      age: 10
+   };
+
+
+
+    scope.addStudent();
+    scope.$apply();
+    var students1 = scope.students;
+
+    expect(StudentsFactory.getStudents).toHaveBeenCalled();
+  });
+
+  it('Should get a student', function() {
+    spyOn(StudentsFactory, 'getStudent').and.returnValue($q.when({data : {
+      name: 'Pedro'
+    }}));
+    scope.student = { 'id' : 1 };
+
+    var studentId = scope.student.id;
+    scope.getAStudent(studentId);
+    scope.$apply();
+
+    var student = scope.specificStudent;
+
+    expect(student.name).toEqual("Pedro");
+  });
 
 });
