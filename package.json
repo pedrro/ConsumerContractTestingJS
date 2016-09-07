@@ -11,6 +11,7 @@
     "angular": "^1.5.8",
     "angular-mocks": "latest",
     "chai": "^3.5.0",
+    "consumer-contracts": "^1.4.0",
     "frisby": "latest",
     "jasmine-core": "^2.3.4",
     "jasmine-node": "latest",
@@ -24,6 +25,7 @@
   "scripts": {
     "pretest": "node server.js > /dev/null 2>&1 &",
     "back-unit-test": "mocha --opts test/back/unit/mocha.opts test/back/unit/**_spec.js",
+    "contract": "node_modules/consumer-contracts/lib/cli.js run test/contract/contract_spec.js",
     "test": "node_modules/jasmine-node/bin/jasmine-node test/back/server_spec.js",
     "start": "node back-end/server.js"
   },
