@@ -32,7 +32,7 @@ studentsRoute.get(function(request, response) {
 });
 
 studentsRoute.post(function(request, response) {
-    var student = {
+    var studentValidation = {
         'name': {
             notEmpty: true,
             errorMessage: 'Invalid name'
@@ -50,11 +50,13 @@ studentsRoute.post(function(request, response) {
         }
     };
 
-    request.checkBody(student);
+    var newStudent = buildStudent(request.body.name, parseInt(request.body.age));
+
+    request.checkBody(studentValidation);
     if(request.validationErrors()) {
         response.status(400).send('errors on request: ' + util.inspect(request.validationErrors()));
     }else {
-        response.json(studentsController.create(buildStudent(request.body.name, parseInt(request.body.age))));
+        response.json(studentsController.create(newStudent));
     }
 });
 
