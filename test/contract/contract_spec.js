@@ -11,8 +11,8 @@ module.exports = new Contract({
     response: {
         statusCode: 200,
         body: Joi.array().items(Joi.object().keys({
-            name: Joi.string(),
-            age: Joi.number().integer()
+            name: Joi.string().required(),
+            age: Joi.number().integer().min(0).max(100).required()
         }))
     }
 });
