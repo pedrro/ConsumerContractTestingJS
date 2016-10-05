@@ -8,8 +8,8 @@ describe('students controller', function() {
 
   it('should create a student', function() {
     var student = {
-      name: "pedroo",
-      age: 10
+      nome: "pedroo",
+      idade: 10
     };
 
     expect(studentsController.create(student)).to.be.eql(student);
@@ -17,7 +17,7 @@ describe('students controller', function() {
    });
 
    it('should get a student', function() {
-     var student =   {name: 'Pedro', age: 10};
+     var student =   {nome: 'Pedro', idade: 10};
      expect(studentsController.getById(1)).to.be.eql(student);
    });
 });

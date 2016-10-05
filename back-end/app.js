@@ -28,8 +28,8 @@ studentsRoute.get(function(request, response) {
 
 studentsRoute.post(function(request, response) {
     var studentValidation = Joi.object().keys({
-        'name': Joi.string().required(),
-        'age': Joi.number().integer().min(0).max(100).required()
+        'nome': Joi.string().required(),
+        'idade': Joi.number().integer().min(0).max(100).required()
     });
 
     Joi.validate(request.body, studentValidation, function(err, value) {

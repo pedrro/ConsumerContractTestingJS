@@ -3,9 +3,9 @@ function StudentsController() {
 }
 
 var students = [
-  {name: 'Pedro', age: 10},
-  {name: 'João', age: 11},
-  {name: 'Thiago', age: 9}
+  {nome: 'Pedro', idade: 10},
+  {nome: 'João', idade: 11},
+  {nome: 'Thiago', idade: 9}
 ];
 
 StudentsController.prototype.findAll = function () {
